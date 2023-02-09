@@ -1,0 +1,5 @@
+const WIKTIONARYURL = (word) => `https://en.wiktionary.org/api/rest_v1/page/definition/${word}`;
+const EDITURL = (word) => `https://en.wiktionary.org/w/index.php?title=${word}&action=edit`;
+const WORDURL = (word) => `https://en.wiktionary.org/wiki/${word}`;		// This becomes the link called by the externalLink element.
+const SEARCHURL = (word) =>
+	`https://en.wiktionary.org/w/api.php?action=opensearch&search=${word}&profile=engine_autoselect`; // This is used to find alternative searchText spellings
