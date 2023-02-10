@@ -4,7 +4,7 @@
 
 <template>
     <el-container>
-        <el-aside width="540px">Aside</el-aside>
-        <el-main>Main</el-main>
+        <el-aside width="540px">Hello</el-aside>
+        <el-main>Moto</el-main>
     </el-container>
 </template>
