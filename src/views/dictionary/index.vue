@@ -6,7 +6,6 @@
                 <div v-if="entry_loaded" class="entries">
                     <div v-for="(languages, lid) in entries" v-bind:key="lid" class="languages">
                         <wt-entries v-for="entry in languages" v-bind:key="entry.partOfSpeech" v-bind:entry="entry" />
-                        <el-divider />
                     </div>
                 </div>
                 <el-empty v-else-if="entries.length < 1" description="No entry" />
