@@ -14,7 +14,10 @@ module.exports = {
     "quotes": ["error", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
     "no-unused-vars": ["warn"],
     // Vue
-    "vue/multi-word-component-names": ["off"]
+    "vue/multi-word-component-names": ["off"],
+    "vue/v-on-style": ["error", "longform"],
+    "vue/v-bind-style": ["error", "longform"],
+    "vue/v-slot-style": ["error", "longform"],
   },
   parserOptions: {
     ecmaVersion: "latest"

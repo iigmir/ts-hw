@@ -4,7 +4,7 @@ import WelcomeItem from "./WelcomeItem.vue";
 
 <template>
   <WelcomeItem>
-    <template #heading>Documentation</template>
+    <template v-slot:heading>Documentation</template>
 
     Vue’s
     <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
@@ -12,7 +12,7 @@ import WelcomeItem from "./WelcomeItem.vue";
   </WelcomeItem>
 
   <WelcomeItem>
-    <template #heading>Tooling</template>
+    <template v-slot:heading>Tooling</template>
 
     This project is served and bundled with
     <a href="https://vitejs.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
@@ -29,7 +29,7 @@ import WelcomeItem from "./WelcomeItem.vue";
   </WelcomeItem>
 
   <WelcomeItem>
-    <template #heading>Ecosystem</template>
+    <template v-slot:heading>Ecosystem</template>
 
     Get official tools and libraries for your project:
     <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
@@ -42,7 +42,7 @@ import WelcomeItem from "./WelcomeItem.vue";
   </WelcomeItem>
 
   <WelcomeItem>
-    <template #heading>Community</template>
+    <template v-slot:heading>Community</template>
 
     Got stuck? Ask your question on
     <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>, our official
@@ -57,7 +57,7 @@ import WelcomeItem from "./WelcomeItem.vue";
   </WelcomeItem>
 
   <WelcomeItem>
-    <template #heading>Support Vue</template>
+    <template v-slot:heading>Support Vue</template>
 
     As an independent project, Vue relies on community backing for its sustainability. You can help
     us by

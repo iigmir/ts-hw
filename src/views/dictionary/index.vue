@@ -2,7 +2,7 @@
     <div class="ajax">
         <term-form v-on:submit="submitted" />
         <el-row class="gap">
-            <el-col :span="24">
+            <el-col v-bind:span="24">
                 <div v-loading="requesting">
                     <p>{{ error ? "Error" : entries }}</p>
                 </div>
