@@ -1,5 +1,5 @@
 <template>
-    <p class="definition" v-html="definition"></p>
+    <p class="definition" v-html="result"></p>
 </template>
 
 <script lang="ts">
@@ -10,5 +10,10 @@ export default {
             default: "",
         },
     },
+    computed: {
+        result() {
+            return this.definition;
+        }
+    }
 };
 </script>
