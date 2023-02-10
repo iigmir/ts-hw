@@ -4,7 +4,7 @@
         <!-- HelloMoto -->
         <el-row>
             <el-col :span="24">
-                <div class="grid-content ep-bg-purple-dark" />
+                {{ entries }}
             </el-col>
         </el-row>
     </div>
@@ -15,16 +15,17 @@ import { ref } from "vue";
 import TermForm from "./components/form.vue";
 import { GetTerm } from "@/api/definition";
 // Type
-import type { WiktionaryResponse, WiktionaryUsage } from "@/api/definition";
-// import type { Ref } from "vue";
+import type { WiktionaryResponse, WiktionaryLanguageEntry } from "@/api/definition";
 
-const entries = ref<typeof WiktionaryUsage[]>([]);
+const entries = ref<WiktionaryLanguageEntry[]>([]);
+
 
 const ajax = (term: string) => {
-    GetTerm( term ).then( (response: typeof WiktionaryResponse) => {
-        const languages = Object.values( response );
+    const insert_entiries = (response: WiktionaryResponse) => {
+        const languages = Object.values(response);
         entries.value = languages;
-    });
+    };
+    GetTerm( term ).then( insert_entiries );
 };
 
 /**

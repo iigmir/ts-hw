@@ -1,45 +1,17 @@
-declare module TheNamespace {
-    export interface ParsedExample {
-        example: string;
-    }
-    export interface Definition {
-        definition: string;
-        parsedExamples: ParsedExample[];
-        examples: string[];
-    }
-    export interface En {
-        partOfSpeech: string;
-        language: string;
-        definitions: Definition[];
-    }
-    export interface RootObject {
-        en: En[];
-    }
-
+interface WiktionaryUsage {
+    definition: string;
+    parsedExamples: string[];
+    examples: string[];
 }
 
-declare module WiktionaryUsage {
-    export interface ParsedExample {
-        example: string;
-    }
-    export interface RegularExample {
-        example: string;
-    }
-    export interface RootObject {
-        definition: string;
-        parsedExamples: ParsedExample[];
-        examples: RegularExample[];
-    }
+interface WiktionaryLanguageEntry {
+    partOfSpeech: string;
+    language: string;
+    definitions: WiktionaryUsage[];
 }
 
-// http://json2ts.com/
-declare module WiktionaryResponse {
-    export interface RootObject {
-        /**
-         * @see <https://typescript.tv/errors/#TS2709>
-         */
-        [language: string]: WiktionaryUsage[]
-    }
+interface WiktionaryResponse {
+    [language: string]: WiktionaryLanguageEntry
 }
 
 /**
@@ -51,4 +23,4 @@ export const GetTerm = async (term: string) => {
     return await r.json();
 };
 
-export type { WiktionaryUsage, WiktionaryResponse, TheNamespace };
+export type { WiktionaryUsage, WiktionaryLanguageEntry, WiktionaryResponse };
