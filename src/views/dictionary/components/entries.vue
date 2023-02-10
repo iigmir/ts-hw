@@ -14,8 +14,8 @@
 import { computed } from "vue";
 import type { WiktionaryLanguageEntry } from "@/api/definition";
 // Components
-import EntryExamples from "./entry-examples.vue";
-import EntryDefinition from "./entry-definition.vue";
+import EntryExamples from "./entry/entry-examples.vue";
+import EntryDefinition from "./entry/entry-definition.vue";
 
 const props = defineProps<{
     entry: WiktionaryLanguageEntry
