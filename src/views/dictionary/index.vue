@@ -4,7 +4,7 @@
         <el-row class="gap">
             <el-col v-bind:span="24" v-loading="requesting">
                 <div v-if="entry_loaded" class="entries">
-                    <div  v-for="(languages, lid) in entries" v-bind:key="lid" class="languages">
+                    <div v-for="(languages, lid) in entries" v-bind:key="lid" class="languages">
                         <wt-entries v-for="entry in languages" v-bind:key="entry.partOfSpeech" v-bind:entry="entry" />
                     </div>
                 </div>
