@@ -9,7 +9,7 @@
                         <el-divider />
                     </div>
                 </div>
-                <el-empty v-else-if="entries.length < 1" description="No emtry" />
+                <el-empty v-else-if="entries.length < 1" description="No entry" />
                 <div v-else-if="error">
                     <el-result
                         icon="warning"
