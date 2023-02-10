@@ -11,7 +11,7 @@ interface WiktionaryLanguageEntry {
 }
 
 interface WiktionaryResponse {
-    [language: string]: WiktionaryLanguageEntry
+    [language: string]: WiktionaryLanguageEntry[]
 }
 
 /**

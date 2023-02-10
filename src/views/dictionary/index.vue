@@ -30,7 +30,7 @@ import WtEntries from "./components/entries.vue";
 // Type
 import type { WiktionaryResponse, WiktionaryLanguageEntry } from "@/api/definition";
 
-const entries = ref<WiktionaryLanguageEntry[]>([]);
+const entries = ref<WiktionaryLanguageEntry[][]>([]);
 const insert_entiries = (response: WiktionaryResponse) => {
     const languages = Object.values(response);
     entries.value = languages;
