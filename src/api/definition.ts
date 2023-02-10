@@ -1,11 +1,11 @@
-interface parsedExample {
+interface WiktionaryParsedExample {
     example: string;
     translation: string;
 }
 
 interface Definition {
     definition: string;
-    parsedExamples: parsedExample[];
+    parsedExamples: WiktionaryParsedExample[];
     examples: string[];
 }
 
@@ -39,4 +39,4 @@ export const GetTerm = async (term: string): Promise<WiktionaryResponse> => {
     return new Promise( main );
 };
 
-export type { Definition, WiktionaryLanguageEntry, WiktionaryResponse };
+export type { WiktionaryParsedExample, Definition, WiktionaryLanguageEntry, WiktionaryResponse };
