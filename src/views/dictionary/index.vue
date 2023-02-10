@@ -2,9 +2,17 @@
     <div class="ajax">
         <term-form v-on:submit="submitted" />
         <el-row class="gap">
-            <el-col v-bind:span="24">
-                <div v-loading="requesting">
-                    <p>{{ error ? "Error" : entries }}</p>
+            <el-col v-bind:span="24" v-loading="requesting">
+                <div v-if="entry_loaded" class="entries">
+                    <wt-entries v-for="(entry, index) in entries" v-bind:key="index" v-bind:entry="entry" />
+                </div>
+                <el-empty v-else-if="entries.length < 1" description="No emtry" />
+                <div v-else-if="error">
+                    <el-result
+                        icon="warning"
+                        title="Request failed"
+                        sub-title="Please follow the instructions"
+                    />
                 </div>
             </el-col>
         </el-row>
@@ -12,9 +20,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import TermForm from "./components/form.vue";
+import { ref, computed } from "vue";
 import { GetTerm } from "@/api/definition";
+// Components
+import TermForm from "./components/form.vue";
+import WtEntries from "./components/entries.vue";
 // Type
 import type { WiktionaryResponse, WiktionaryLanguageEntry } from "@/api/definition";
 
@@ -24,13 +34,16 @@ const insert_entiries = (response: WiktionaryResponse) => {
     entries.value = languages;
 };
 
-// States
 const error = ref(false);
 const show_error = () => { error.value = true; };
 
 const requesting = ref(false);
 const start_loading = () => { requesting.value = true; };
 const finish_loading = () => { requesting.value = false; };
+
+const entry_loaded = computed( () => {
+    return !error.value && entries.value.length > 0;
+});
 
 const ajax = (term: string) => {
     start_loading();
@@ -47,7 +60,7 @@ const ajax = (term: string) => {
  */
 const submitted = ({ term }: { term: string }) => {
     /**
-     * FIXME: IDK but why it triggered TWICE?
+     * FIXME: IDK but why the event triggered TWICE?
      */
     if( term != undefined ) {
         ajax(term);
