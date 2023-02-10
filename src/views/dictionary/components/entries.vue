@@ -1,7 +1,7 @@
 <template>
-    <div class="entry">
+    <el-descriptions class="entry" v-bind:key="entry.partOfSpeech" v-bind:title="entry.language">
         {{ props.entry }}
-    </div>
+    </el-descriptions>
 </template>
 
 <script setup lang="ts">
