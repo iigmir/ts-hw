@@ -1,8 +1,7 @@
 <template>
     <div class="ajax">
         <term-form v-on:submit="submitted" />
-        <!-- HelloMoto -->
-        <el-row>
+        <el-row class="gap">
             <el-col :span="24">
                 {{ entries }}
             </el-col>
@@ -18,14 +17,20 @@ import { GetTerm } from "@/api/definition";
 import type { WiktionaryResponse, WiktionaryLanguageEntry } from "@/api/definition";
 
 const entries = ref<WiktionaryLanguageEntry[]>([]);
+// States
+const error = ref(false);
 
+const requesting = ref(false);
+const start_loading = () => { requesting.value = true; };
+const finish_loading = () => { requesting.value = false; };
 
 const ajax = (term: string) => {
     const insert_entiries = (response: WiktionaryResponse) => {
         const languages = Object.values(response);
         entries.value = languages;
     };
-    GetTerm( term ).then( insert_entiries );
+    start_loading();
+    GetTerm( term ).then( insert_entiries ).finally( finish_loading );
 };
 
 /**
@@ -41,3 +46,7 @@ const submitted = ({ term }: { term: string }) => {
     }
 };
 </script>
+
+<style scoped>
+.gap { margin-left: 1rem; }
+</style>
