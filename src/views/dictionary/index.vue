@@ -3,7 +3,9 @@
         <term-form v-on:submit="submitted" />
         <el-row class="gap">
             <el-col :span="24">
-                {{ entries }}
+                <div v-loading="requesting">
+                    <p>{{ error ? "Error" : entries }}</p>
+                </div>
             </el-col>
         </el-row>
     </div>
@@ -17,20 +19,26 @@ import { GetTerm } from "@/api/definition";
 import type { WiktionaryResponse, WiktionaryLanguageEntry } from "@/api/definition";
 
 const entries = ref<WiktionaryLanguageEntry[]>([]);
+const insert_entiries = (response: WiktionaryResponse) => {
+    const languages = Object.values(response);
+    entries.value = languages;
+};
+
 // States
 const error = ref(false);
+const show_error = () => { error.value = true; };
 
 const requesting = ref(false);
 const start_loading = () => { requesting.value = true; };
 const finish_loading = () => { requesting.value = false; };
 
 const ajax = (term: string) => {
-    const insert_entiries = (response: WiktionaryResponse) => {
-        const languages = Object.values(response);
-        entries.value = languages;
-    };
     start_loading();
-    GetTerm( term ).then( insert_entiries ).finally( finish_loading );
+    GetTerm( term )
+        .then( insert_entiries )
+        .catch( show_error )
+        .finally( finish_loading )
+    ;
 };
 
 /**
