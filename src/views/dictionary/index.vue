@@ -30,10 +30,10 @@ import WtEntries from "./components/entries.vue";
 // Type
 import type { WiktionaryResponse, WiktionaryLanguageEntry } from "@/api/definition";
 
-const entries = ref<WiktionaryLanguageEntry[][]>([]);
-const insert_entiries = (response: WiktionaryResponse) => {
-    const languages = Object.values(response);
-    entries.value = languages;
+const entries_source = ref<WiktionaryResponse>({});
+const entries = computed<WiktionaryLanguageEntry[][]>( () => Object.values( entries_source.value ) );
+const insert_entiries_source = (response: WiktionaryResponse) => {
+    entries_source.value = response;
 };
 
 const error = ref(false);
@@ -50,7 +50,7 @@ const entry_loaded = computed( () => {
 const ajax = (term: string) => {
     start_loading();
     GetTerm( term )
-        .then( insert_entiries )
+        .then( insert_entiries_source )
         .catch( show_error )
         .finally( finish_loading )
     ;
