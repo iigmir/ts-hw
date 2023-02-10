@@ -1,13 +1,18 @@
-interface WiktionaryUsage {
+interface parsedExample {
+    example: string;
+    translation: string;
+}
+
+interface Definition {
     definition: string;
-    parsedExamples: string[];
+    parsedExamples: parsedExample[];
     examples: string[];
 }
 
 interface WiktionaryLanguageEntry {
     partOfSpeech: string;
     language: string;
-    definitions: WiktionaryUsage[];
+    definitions: Definition[];
 }
 
 interface WiktionaryResponse {
@@ -34,4 +39,4 @@ export const GetTerm = async (term: string): Promise<WiktionaryResponse> => {
     return new Promise( main );
 };
 
-export type { WiktionaryUsage, WiktionaryLanguageEntry, WiktionaryResponse };
+export type { Definition, WiktionaryLanguageEntry, WiktionaryResponse };
